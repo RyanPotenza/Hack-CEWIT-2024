@@ -51,7 +51,6 @@ class GoogleMapsClient:
             raise ValueError("No routes found")
         return routes[0]
 
-
 class EVRoutePlanner:
     def __init__(self, api_key: str, start: Tuple[float, float], end: Tuple[float, float], vehicle_range: int):
         """
@@ -150,23 +149,6 @@ class EVRoutePlanner:
                     return currentDist > self.vehicle_range
                 current_node_i += 1
             return False
-        # if not next_node:
-        #     return False
-        # if 'nearest_ev_station_distance' in current_node:
-        #     distance_to_next_node = current_node['dist']
-        #     distance_from_next_node_to_nearest_station = next_node.get('nearest_ev_station_distance', float('inf'))
-        
-        #     # Calculate total distance from current node to next node and then to its nearest charging station
-        #     total_distance = distance_to_next_node + distance_from_next_node_to_nearest_station + self.total_distance
-        #     print(distance_from_next_node_to_nearest_station)
-
-        #     print(f"Total distance: {total_distance}")
-        #     # print(f"EV range: {self
-        
-        #     # Compare total distance with the EV's remaining range
-        #     if total_distance > self.vehicle_range:
-        #         return True
-        # return False
 
     def _route_to_nodes(self, route_segment) -> List[dict]:
         """
@@ -185,38 +167,11 @@ class EVRoutePlanner:
                 'dist': step['distance']['value']  # Distance in meters
             }
             # Calculate the distance to the nearest EV charging station
-            # nearest_station = self._find_nearest_charging_station(node['lat'], node['lng'])
-            nearest_stations = self.places_client.find_nearby_charging_stations((node['lat'], node['lng']))#[0]['geometry']['location']
-
-            for station in nearest_stations:
-                self.all_stations.append(station['geometry']['location'])
-
-
-            # Based on the results, find the one that is closest to the destination
-            nearest_station = None
-            nearest_station_distance = float('inf')
-            nearest_station_route = None
-            i = 0
-            for station in nearest_stations:
-                if i > 3: break
-                i+=1
-
-                # use linear method to calculate distance
-                station_location = station['geometry']['location']
-                # station_distance = ((station_location['lat'] - self.end[0])**2 + (station_location['lng'] - self.end[1])**2)**0.5
-                # actually use the distance from the final destination
-                station_route = self.maps_client.get_route((station_location['lat'], station_location['lng']), self.end)
-                station_distance = station_route['legs'][0]['distance']['value']
-
-                if station_distance < nearest_station_distance:
-                    nearest_station = station
-                    nearest_station_distance = station_distance
-
+            nearest_station = self.places_client.find_nearby_charging_stations((node['lat'], node['lng']))[0]#['geometry']['location']
 
             if nearest_station:
                 nearest_station_route = self.maps_client.get_route((node['lat'], node['lng']), (nearest_station['geometry']['location']['lat'], nearest_station['geometry']['location']['lng']))['legs'][0]
                 nearest_station_distance = nearest_station_route['distance']['value']
-
 
                 node['nearest_ev_station'] = nearest_station
                 node['nearest_ev_station_distance'] = nearest_station_distance
@@ -224,7 +179,7 @@ class EVRoutePlanner:
 
 
             nodes.append(node)
-        
         return nodes
     
     
+
