@@ -63,7 +63,7 @@ function displayEVRoute(data) {
         origin: data.start_location,
         destination: data.end_location, 
         travelMode: 'DRIVING',
-        waypoints: data.waypoints,
+        waypoints: data.waypoints
     };
 
     directionsService.route(request, function(response, status) {
@@ -85,7 +85,7 @@ function displayTransitRoute() {
     const request = {
         origin: document.getElementById('startLocation').value,
         destination: document.getElementById('destinationLocation').value,
-        travelMode: 'TRANSIT',
+        travelMode: 'TRANSIT'
     };
 
     directionsService.route(request, function (response, status) {
@@ -119,7 +119,7 @@ function displayGasRoute() {
     const request = {
         origin: document.getElementById('startLocation').value,
         destination: document.getElementById('destinationLocation').value,
-        travelMode: 'DRIVING',
+        travelMode: 'DRIVING'
     };
 
     directionsService.route(request, function(response, status) {
@@ -141,9 +141,14 @@ function displayGasRoute() {
 }
 
 function getTotalTransitEmissions(route){
-    console.log("route")
-    console.log(route)
-    
-    return 69
+    let totalDistance = 0;
+
+    route.legs[0].steps.forEach((leg) => {
+        if (leg.travel_mode == "TRANSIT")
+            totalDistance += (leg.distance.value/1000) * .035
+        else
+            totalDistance += (leg.distance.value/1000) * .822 
+    });
+    return totalDistance.toFixed(3)
 }
 
