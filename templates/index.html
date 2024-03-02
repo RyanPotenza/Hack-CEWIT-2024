@@ -21,6 +21,14 @@
                 <label for="destinationLocation">Destination Location:</label>
                 <input type="text" id="destinationLocation" placeholder="Enter destination location">
 
+                <!-- Dropdown menu for transport mode selection -->
+                <label for="transportMode">Select Transport Mode:</label>
+                <select id="transportMode" onchange="toggleTransport()">
+                    <option value="ev">EV</option>
+                    <option value="transit">Transit</option>
+                    <option value="gas">Gas</option>
+                </select>
+
                 <button type="button" onclick="sendData()">Plan Route</button>
             </form>
 
@@ -29,6 +37,7 @@
                 <p id="evEmissions">EV Emissions: </p>
                 <p id="gasEmissions">Gas Emissions: </p>
                 <p id="publicEmissions">Public Emissions: </p>
+                <p id="navigationTime">Navigation Time: </p>
             </div>
         </div>
 
@@ -43,6 +52,8 @@
     </script>
 </body>
 </html>
+
+
 
 
 

@@ -1,5 +1,5 @@
-def IceEmissions(start,fin):
+def IceEmissions(client,start,fin):
     return 50
 
-def PublicEmissions(start,fin):
+def PublicEmissions(client,start,fin):
     return 75

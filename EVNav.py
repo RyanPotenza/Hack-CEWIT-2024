@@ -1,5 +1,8 @@
-def EVEmissions(start, fin, battery):
+def EVEmissions(client, start, fin, battery):
     return battery
 
-def calculateOptimalEVRoute(start, fin, battery):
-    return None
+def calculateOptimalEVRoute(client, start, fin, battery):
+    # Return a list of waypoints to be used in
+    waypoints = []
+    return waypoints
+

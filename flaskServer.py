@@ -9,6 +9,8 @@ from utils import *
 app = Flask(__name__, static_url_path='/static', static_folder='static')
 api = Api(app)
 
+client = get_client()
+
 CORS(app) #Enable Cross-Origin Resource Sharing
 
 class EVRoute(Resource):
@@ -22,19 +24,21 @@ class EVRoute(Resource):
         destination_location = data.get('destination_location')
 
         #calculate EV optimal route
-        ev_optimal_route = calculateOptimalEVRoute(starting_location, destination_location, ev_battery_capacity)
+        ev_waypoints = calculateOptimalEVRoute(client, starting_location, destination_location, ev_battery_capacity)
         
         # Calculate emissions
-        ev_emissions = EVEmissions(starting_location, destination_location, ev_battery_capacity)
-        gas_emissions = IceEmissions(starting_location, destination_location)
-        public_emissions = PublicEmissions(starting_location, destination_location)
+        ev_emissions = EVEmissions(client, starting_location, destination_location, ev_battery_capacity)
+        gas_emissions = IceEmissions(client, starting_location, destination_location)
+        public_emissions = PublicEmissions(client, starting_location, destination_location)
 
         # Prepare response data
         response_data = {
             'ev_emissions': ev_emissions,
             'gas_emissions': gas_emissions,
             'public_emissions': public_emissions,
-            'ev_optimal_route': ev_optimal_route
+            'ev_waypoints': ev_waypoints,
+            'start_location': starting_location,
+            'end_location': destination_location,
         }
 
         return {'status': 'success', 'data': response_data}, 200

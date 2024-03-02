@@ -1,12 +1,33 @@
+// Global vars
+let map
+let directionsRenderer
+let directionsService
+let transportMethod = 'ev'
 
-window.initMap = function() {
-    console.log('initMap function called!');
-    const map = new google.maps.Map(document.getElementById('googleMap'), {
-        center: { lat: 37.7749, lng: -122.4194 },
+function initMap() {
+    directionsService = new google.maps.DirectionsService();
+    directionsRenderer = new google.maps.DirectionsRenderer();
+
+    map = new google.maps.Map(document.getElementById('googleMap'), {
+        center: { lat: 40.7588, lng: -73.9851 },
         zoom: 12,
     });
+    directionsRenderer.setMap(map);
+
+    return map;
 };
-       
+
+function toggleTransport() {
+    const transportMethod = document.getElementById('transportMode').value;
+
+    if (transportMethod == 'ev')
+        sendData();
+    else if (transportMethod == 'transit')
+        displayTransitRoute()
+    else
+        displayGasRoute()
+}
+
 function sendData() {
     // Get input values
     const batteryCapacity = document.getElementById('batteryCapacity').value;
@@ -36,26 +57,68 @@ function sendData() {
         document.getElementById('publicEmissions').textContent = `Public Emissions: ${result.data.public_emissions}`;
 
         // Add code to display driving route on the map
-        displayRoute(result.data.ev_optimal_route);
+        displayEVRoute(result.data);
     })
     .catch(error => console.error('Error:', error));
 }
 
-function displayRoute(route) {
-    const directionsService = new google.maps.DirectionsService();
-    const directionsRenderer = new google.maps.DirectionsRenderer();
-    
-    directionsRenderer.setMap(map); // Assuming 'map' is your Google Map instance
-
+function displayEVRoute(data) {
     const request = {
-        origin: route.start_location,
-        destination: route.end_location,
-        travelMode: 'DRIVING'
+        origin: data.start_location,
+        destination: data.end_location, 
+        travelMode: 'DRIVING',
+        waypoints: data.waypoints,
     };
 
     directionsService.route(request, function(response, status) {
         if (status === 'OK') {
             directionsRenderer.setDirections(response);
+
+            // Set Navigation time
+            const route = response.routes[0];
+            const navigationTimeInSeconds = route.legs.reduce((total, leg) => total + leg.duration.value, 0);
+            const navigationTimeInMinutes = Math.round(navigationTimeInSeconds / 60);
+            document.getElementById('navigationTime').textContent = `Navigation Time: ${navigationTimeInMinutes} minutes`;
+        } else {
+            console.error('Directions request failed due to ' + status);
+        }
+    });
+}
+
+function displayTransitRoute() {
+    const request = {
+        origin: document.getElementById('startLocation').value,
+        destination: document.getElementById('destinationLocation').value,
+        travelMode: 'TRANSIT',
+    };
+
+    directionsService.route(request, function(response, status) {
+        if (status === 'OK') {
+            directionsRenderer.setDirections(response);
+
+            // Set Navigation time
+            const navigationTime = response.routes[0].legs.reduce((total, leg) => total + leg.duration.value, 0);
+            document.getElementById('navigationTime').textContent = `Navigation Time: ${formatTime(navigationTime)}`;
+        } else {
+            console.error('Directions request failed due to ' + status);
+        }
+    });
+}
+
+function displayGasRoute() {
+    const request = {
+        origin: document.getElementById('startLocation').value,
+        destination: document.getElementById('destinationLocation').value,
+        travelMode: 'DRIVING',
+    };
+
+    directionsService.route(request, function(response, status) {
+        if (status === 'OK') {
+            directionsRenderer.setDirections(response);
+
+            // Set Navigation time
+            const navigationTime = response.routes[0].legs.reduce((total, leg) => total + leg.duration.value, 0);
+            document.getElementById('navigationTime').textContent = `Navigation Time: ${formatTime(navigationTime)}`;
         } else {
             console.error('Directions request failed due to ' + status);
         }
