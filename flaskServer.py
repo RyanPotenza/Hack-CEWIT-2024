@@ -3,7 +3,6 @@ from flask_restful import Resource, Api
 from flask_cors import CORS
 
 from EVNav import *
-from AltNav import *
 from utils import *
 
 app = Flask(__name__, static_url_path='/static', static_folder='static')
@@ -28,14 +27,11 @@ class EVRoute(Resource):
         
         # Calculate emissions
         ev_emissions = EVEmissions(client, starting_location, destination_location, ev_battery_capacity)
-        gas_emissions = IceEmissions(client, starting_location, destination_location)
-        public_emissions = PublicEmissions(client, starting_location, destination_location)
+        
 
         # Prepare response data
         response_data = {
-            'ev_emissions': ev_emissions,
-            'gas_emissions': gas_emissions,
-            'public_emissions': public_emissions,
+            'emissions': ev_emissions,
             'ev_waypoints': ev_waypoints,
             'start_location': starting_location,
             'end_location': destination_location,

@@ -52,11 +52,7 @@ function sendData() {
     .then(response => response.json())
     .then(result => {
         // Display the result in the frontend
-        document.getElementById('evEmissions').textContent = `EV Emissions: ${result.data.ev_emissions}`;
-        document.getElementById('gasEmissions').textContent = `Gas Emissions: ${result.data.gas_emissions}`;
-        document.getElementById('publicEmissions').textContent = `Public Emissions: ${result.data.public_emissions}`;
-
-        // Add code to display driving route on the map
+        document.getElementById('emissions').textContent = `Emissions: ${result.data.emissions} kg CO2`;
         displayEVRoute(result.data);
     })
     .catch(error => console.error('Error:', error));
@@ -93,15 +89,14 @@ function displayTransitRoute() {
     };
 
     directionsService.route(request, function (response, status) {
-        console.log(response);
         if (status === 'OK') {
             directionsRenderer.setDirections(response);
 
+            // Display Time -- extra steps required with the "TRANSIT" option
             // Check if there are legs and steps in the response
             if (response.routes && response.routes.length > 0 && response.routes[0].legs && response.routes[0].legs.length > 0) {
                 // Get the last leg of the transit route
                 const lastLeg = response.routes[0].legs[response.routes[0].legs.length - 1];
-                console.log(lastLeg);
 
                 // Extract duration from the last transit leg
                 const durationInSeconds = lastLeg.duration.value;
@@ -111,6 +106,9 @@ function displayTransitRoute() {
             } else {
                 console.error('Error: Unable to extract arrival time from the response');
             }
+
+            // Display Carbon Emissions 
+            document.getElementById('emissions').textContent = `Emissions: ${getTotalTransitEmissions(response.routes[0])} kg CO2`;
         } else {
             console.error('Directions request failed due to ' + status);
         }
@@ -133,11 +131,19 @@ function displayGasRoute() {
             const navigationTimeInSeconds = route.legs.reduce((total, leg) => total + leg.duration.value, 0);
             const navigationTimeInMinutes = Math.round(navigationTimeInSeconds / 60);
             document.getElementById('navigationTime').textContent = `Navigation Time: ${navigationTimeInMinutes} minutes`;
+
+            // Set Carbon Emissions
+            document.getElementById('emissions').textContent = `Emissions: ${15} kg CO2`;
         } else {
             console.error('Directions request failed due to ' + status);
         }
     });
 }
 
-
+function getTotalTransitEmissions(route){
+    console.log("route")
+    console.log(route)
+    
+    return 69
+}
 
