@@ -59,11 +59,18 @@ function sendData() {
 }
 
 function displayEVRoute(data) {
+
+    const formattedWaypoints = data.ev_waypoints.map(waypoint => ({
+        location: new google.maps.LatLng(waypoint.lat, waypoint.lng),
+        stopover: true
+    }));
+    console.log(formattedWaypoints)
+
     const request = {
         origin: data.start_location,
         destination: data.end_location, 
         travelMode: 'DRIVING',
-        waypoints: data.waypoints
+        waypoints: formattedWaypoints
     };
 
     directionsService.route(request, function(response, status) {
