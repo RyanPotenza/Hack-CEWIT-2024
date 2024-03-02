@@ -24,6 +24,7 @@ class EVRoute(Resource):
 
         #calculate EV optimal route
         ev_waypoints = calculateOptimalEVRoute(client, starting_location, destination_location, ev_battery_capacity)
+        print(f"Waypoints: {ev_waypoints}")
         
         # Calculate emissions
         ev_emissions = EVEmissions(client, starting_location, destination_location, ev_battery_capacity)

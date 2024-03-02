@@ -59,11 +59,18 @@ function sendData() {
 }
 
 function displayEVRoute(data) {
+
+    const formattedWaypoints = data.ev_waypoints.map(waypoint => ({
+        location: new google.maps.LatLng(waypoint.lat, waypoint.lng),
+        stopover: true
+    }));
+    console.log(formattedWaypoints)
+
     const request = {
         origin: data.start_location,
         destination: data.end_location, 
         travelMode: 'DRIVING',
-        waypoints: data.waypoints,
+        waypoints: formattedWaypoints
     };
 
     directionsService.route(request, function(response, status) {
@@ -85,7 +92,7 @@ function displayTransitRoute() {
     const request = {
         origin: document.getElementById('startLocation').value,
         destination: document.getElementById('destinationLocation').value,
-        travelMode: 'TRANSIT',
+        travelMode: 'TRANSIT'
     };
 
     directionsService.route(request, function (response, status) {
@@ -119,7 +126,7 @@ function displayGasRoute() {
     const request = {
         origin: document.getElementById('startLocation').value,
         destination: document.getElementById('destinationLocation').value,
-        travelMode: 'DRIVING',
+        travelMode: 'DRIVING'
     };
 
     directionsService.route(request, function(response, status) {
@@ -133,7 +140,7 @@ function displayGasRoute() {
             document.getElementById('navigationTime').textContent = `Navigation Time: ${navigationTimeInMinutes} minutes`;
 
             // Set Carbon Emissions
-            document.getElementById('emissions').textContent = `Emissions: ${15} kg CO2`;
+            document.getElementById('emissions').textContent = `Emissions: ${((route.legs[0].distance.value/1000) * .17).toFixed(3)} kg CO2`;
         } else {
             console.error('Directions request failed due to ' + status);
         }
@@ -141,9 +148,14 @@ function displayGasRoute() {
 }
 
 function getTotalTransitEmissions(route){
-    console.log("route")
-    console.log(route)
-    
-    return 69
+    let totalDistance = 0;
+
+    route.legs[0].steps.forEach((leg) => {
+        if (leg.travel_mode == "TRANSIT")
+            totalDistance += (leg.distance.value/1000) * .15
+        else
+            totalDistance += (leg.distance.value/1000) * .089 
+    });
+    return totalDistance.toFixed(3)
 }
 
