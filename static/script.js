@@ -133,7 +133,7 @@ function displayGasRoute() {
             document.getElementById('navigationTime').textContent = `Navigation Time: ${navigationTimeInMinutes} minutes`;
 
             // Set Carbon Emissions
-            document.getElementById('emissions').textContent = `Emissions: ${15} kg CO2`;
+            document.getElementById('emissions').textContent = `Emissions: ${((route.legs[0].distance.value/1000) * .17).toFixed(3)} kg CO2`;
         } else {
             console.error('Directions request failed due to ' + status);
         }
@@ -145,9 +145,9 @@ function getTotalTransitEmissions(route){
 
     route.legs[0].steps.forEach((leg) => {
         if (leg.travel_mode == "TRANSIT")
-            totalDistance += (leg.distance.value/1000) * .035
+            totalDistance += (leg.distance.value/1000) * .15
         else
-            totalDistance += (leg.distance.value/1000) * .822 
+            totalDistance += (leg.distance.value/1000) * .089 
     });
     return totalDistance.toFixed(3)
 }
