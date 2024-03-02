@@ -92,13 +92,25 @@ function displayTransitRoute() {
         travelMode: 'TRANSIT',
     };
 
-    directionsService.route(request, function(response, status) {
+    directionsService.route(request, function (response, status) {
+        console.log(response);
         if (status === 'OK') {
             directionsRenderer.setDirections(response);
 
-            // Set Navigation time
-            const navigationTime = response.routes[0].legs.reduce((total, leg) => total + leg.duration.value, 0);
-            document.getElementById('navigationTime').textContent = `Navigation Time: ${formatTime(navigationTime)}`;
+            // Check if there are legs and steps in the response
+            if (response.routes && response.routes.length > 0 && response.routes[0].legs && response.routes[0].legs.length > 0) {
+                // Get the last leg of the transit route
+                const lastLeg = response.routes[0].legs[response.routes[0].legs.length - 1];
+                console.log(lastLeg);
+
+                // Extract duration from the last transit leg
+                const durationInSeconds = lastLeg.duration.value;
+                const durationInMinutes = Math.round(durationInSeconds / 60);
+
+                document.getElementById('navigationTime').textContent = `Navigation Time: ${durationInMinutes} minutes`;
+            } else {
+                console.error('Error: Unable to extract arrival time from the response');
+            }
         } else {
             console.error('Directions request failed due to ' + status);
         }
@@ -117,8 +129,10 @@ function displayGasRoute() {
             directionsRenderer.setDirections(response);
 
             // Set Navigation time
-            const navigationTime = response.routes[0].legs.reduce((total, leg) => total + leg.duration.value, 0);
-            document.getElementById('navigationTime').textContent = `Navigation Time: ${formatTime(navigationTime)}`;
+            const route = response.routes[0];
+            const navigationTimeInSeconds = route.legs.reduce((total, leg) => total + leg.duration.value, 0);
+            const navigationTimeInMinutes = Math.round(navigationTimeInSeconds / 60);
+            document.getElementById('navigationTime').textContent = `Navigation Time: ${navigationTimeInMinutes} minutes`;
         } else {
             console.error('Directions request failed due to ' + status);
         }
