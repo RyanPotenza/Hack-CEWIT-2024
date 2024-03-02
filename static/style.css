@@ -7,24 +7,32 @@ body {
 
 .container {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .ev-container {
     max-width: 600px;
-    margin: 50px;
-    background-color: #fff;
+    margin: 20px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
+    text-align: center;
+}
+
+form {
+    display: grid;
+    gap: 10px;
 }
 
 .map-container {
     flex: 1;
-    height: 400px; /* Adjust the height as needed */
-    margin: 50px;
-    background-color: #fff;
+    height: 400px;
+    margin: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
 }
+
 
 

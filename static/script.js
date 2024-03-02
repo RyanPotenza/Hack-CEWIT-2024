@@ -34,10 +34,33 @@ function sendData() {
         document.getElementById('evEmissions').textContent = `EV Emissions: ${result.data.ev_emissions}`;
         document.getElementById('gasEmissions').textContent = `Gas Emissions: ${result.data.gas_emissions}`;
         document.getElementById('publicEmissions').textContent = `Public Emissions: ${result.data.public_emissions}`;
+
+        // Add code to display driving route on the map
+        displayRoute(result.data.ev_optimal_route);
     })
     .catch(error => console.error('Error:', error));
 }
 
+function displayRoute(route) {
+    const directionsService = new google.maps.DirectionsService();
+    const directionsRenderer = new google.maps.DirectionsRenderer();
+    
+    directionsRenderer.setMap(map); // Assuming 'map' is your Google Map instance
+
+    const request = {
+        origin: route.start_location,
+        destination: route.end_location,
+        travelMode: 'DRIVING'
+    };
+
+    directionsService.route(request, function(response, status) {
+        if (status === 'OK') {
+            directionsRenderer.setDirections(response);
+        } else {
+            console.error('Directions request failed due to ' + status);
+        }
+    });
+}
 
 
 

@@ -10,17 +10,19 @@
     <div class="container">
         <div class="ev-container">
             <h1>EV Route Planner</h1>
-            
-            <label for="batteryCapacity">EV Battery Capacity:</label>
-            <input type="number" id="batteryCapacity" placeholder="Enter battery capacity">
-            
-            <label for="startLocation">Starting Location:</label>
-            <input type="text" id="startLocation" placeholder="Current Location" readonly>
-            
-            <label for="destinationLocation">Destination Location:</label>
-            <input type="text" id="destinationLocation" placeholder="Enter destination location">
 
-            <button onclick="sendData()">Plan Route</button>
+            <form id="routeForm">
+                <label for="batteryCapacity">EV Battery Capacity:</label>
+                <input type="number" id="batteryCapacity" placeholder="Enter battery capacity">
+                
+                <label for="startLocation">Starting Location:</label>
+                <input type="text" id="startLocation" placeholder="Current Location">
+                
+                <label for="destinationLocation">Destination Location:</label>
+                <input type="text" id="destinationLocation" placeholder="Enter destination location">
+
+                <button type="button" onclick="sendData()">Plan Route</button>
+            </form>
 
             <div class="result-container">
                 <h2>Result:</h2>

@@ -21,6 +21,9 @@ class EVRoute(Resource):
         starting_location = data.get('starting_location')
         destination_location = data.get('destination_location')
 
+        #calculate EV optimal route
+        ev_optimal_route = calculateOptimalEVRoute(starting_location, destination_location, ev_battery_capacity)
+        
         # Calculate emissions
         ev_emissions = EVEmissions(starting_location, destination_location, ev_battery_capacity)
         gas_emissions = IceEmissions(starting_location, destination_location)
@@ -30,7 +33,8 @@ class EVRoute(Resource):
         response_data = {
             'ev_emissions': ev_emissions,
             'gas_emissions': gas_emissions,
-            'public_emissions': public_emissions
+            'public_emissions': public_emissions,
+            'ev_optimal_route': ev_optimal_route
         }
 
         return {'status': 'success', 'data': response_data}, 200
