@@ -4,18 +4,15 @@ with open("./APIKey.txt") as f:
     api_key = f.readline()
 
 
-def calculateOptimalEVRoute(client, start, end, battery):
-    # Return a list of waypoints to be used in
-    # start = (40.743462, -74.029068)
-    # end = (42.886448, -78.878372)
+def calculateOptimalEVRoute(client, start, end, battery, method):
 
-    print("PRESSSED ")
-
-    ev_route_planner = EVRoutePlanner(api_key, start, end, int(battery)*1000) 
-    route = ev_route_planner.calculate_route()
+    if method == 'default':
+        ev_route_planner = EVRoutePlanner(api_key, start, end, int(battery)*1000) 
+        route = ev_route_planner.calculate_route()
+        waypoints = ev_route_planner.charging_stations
+    else:
+        return [], 0.0
     
-    waypoints = ev_route_planner.charging_stations
-    # waypoints = [{'lat': 40.743462, 'lng': -74.029068}, {'lat': 42.886448, 'lng': -78.878372}]
 
     return waypoints, round(ev_route_planner.emissions_kg_co2, 3)
 

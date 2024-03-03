@@ -3,6 +3,7 @@ let map;
 let directionsRenderer;
 let directionsService;
 let evList; // Declare evList outside of functions to make it accessible to other functions
+let optimizationAlgo = "default"
 
 function initMap() {
     directionsService = new google.maps.DirectionsService();
@@ -42,6 +43,10 @@ function toggleTransport() {
         sendData();
     else if (transportMethod == 'transit')
         displayTransitRoute()
+    else if (transportMethod == 'ml optimized'){
+        optimizationAlgo = 'ml'
+        sendData()
+    }
     else
         displayGasRoute()
 }
@@ -54,6 +59,7 @@ function sendData() {
     const selectedEV = evList.find(ev => ev.Name === document.getElementById('evName').value);
     // Create a JSON object with the input data
     const data = {
+        method:                 optimizationAlgo,
         ev_battery_capacity:    selectedEV['Battery Capacity (kWh)'],
         ev_total_range:         selectedEV["Total Range (miles)"],
         starting_location:      startLocation,
@@ -190,4 +196,4 @@ function getEVList(callback) {
             callback(error);
         });
 }
-  
+

@@ -25,13 +25,14 @@ class EVRoute(Resource):
         data = request.get_json()
 
         # Extract fields from the input JSON
+        method                  = data.get('method')
         ev_battery_capacity     = data.get('ev_battery_capacity')
         ev_total_range          = data.get('ev_total_range')
         starting_location       = data.get('starting_location')
         destination_location    = data.get('destination_location')
 
         #calculate EV optimal route
-        ev_waypoints,ev_emissions = calculateOptimalEVRoute(client, starting_location, destination_location, ev_battery_capacity)
+        ev_waypoints,ev_emissions = calculateOptimalEVRoute(client, starting_location, destination_location, ev_battery_capacity, method)
         print(f"Waypoints: {ev_waypoints}")
         
         # Calculate emissions
