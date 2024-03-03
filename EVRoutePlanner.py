@@ -6,7 +6,7 @@ from PathInterpolator import PathInterpolator
 from EmissionsCalculator import EmissionsCalculator
 
 class EVRoutePlanner:
-    def __init__(self, api_key: str, start: Tuple[float, float], end: Tuple[float, float], vehicle_range: int):
+    def __init__(self, api_key: str, start: Tuple[float, float], end: Tuple[float, float], vehicle_range, vehicle_efficiency):
         """
         Initializes the EVRoutePlanner with start, end locations, and the EV's range.
 
@@ -15,13 +15,15 @@ class EVRoutePlanner:
         :param end: End location as a tuple (latitude, longitude).
         :param vehicle_range: The EV's range on a full charge in meters.
         """
+        self.vehicle_efficiency = vehicle_efficiency
+        self.vehicle_range = vehicle_range*1E3
+
         self.maps_client = GoogleMapsClient(api_key)
         self.places_client = GooglePlacesClient(api_key)
         self.paths_interpolator = PathInterpolator(api_key,30000)
-        self.emissions_calculator = EmissionsCalculator()
+        self.emissions_calculator = EmissionsCalculator(vehicle_efficiency)
         self.start = start
         self.end = end
-        self.vehicle_range = vehicle_range
         self.route = []
         self.total_distance = 0
 
