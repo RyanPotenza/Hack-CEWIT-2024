@@ -83,6 +83,8 @@ class EVRoutePlanner:
                     self.route.append(node)
                     self.total_distance += node['dist']
                     if i == len(nodes) - 1:
+                        # Add emissions for the last segment
+                        self.emissions_kg_co2 += self.emissions_calculator.calculate_emissions(self.total_distance, node)
                         # current_location = self.end
                         keepGoing = False
             # except Exception as e:
