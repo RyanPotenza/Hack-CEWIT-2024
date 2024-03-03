@@ -13,7 +13,7 @@
 
             <div class="form-container">
                 <form id="routeForm">
-                    <label for="batteryCapacity">EV Battery Capacity:</label>
+                    <label for="batteryCapacity">EV Battery Capacity: kM</label>
                     <input type="number" id="batteryCapacity" placeholder="Enter battery capacity">
                     
                     <label for="startLocation">Starting Location:</label>
@@ -45,6 +45,8 @@
             <!-- Google Maps will be displayed here -->
         </div>
     </div>
+    <button class="home-btn" onclick="location.href='/'">Back to Home</button>
+
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
     <script async defer

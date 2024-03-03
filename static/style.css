@@ -36,7 +36,23 @@ form {
     border-radius: 5px;
 }
 
+.home-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    border: none; /* Removes any border */
+}
 
+.home-btn:hover {
+    background-color: #0056b3;
+}
 
 
 
