@@ -1,0 +1,103 @@
+body {
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('index-background.png') center/cover no-repeat;
+    background-attachment: fixed;
+    word-spacing: 0.2em;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+header {
+    background-color: rgba(50, 50, 50, 0.8); /* Dark grey with the same transparency as the mission box */
+    color: #fff;
+    padding: 20px;
+    width: 100%;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+header h2 {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    text-decoration: underline;
+}
+
+.team-members {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.team-members li {
+    color: #fff;
+    text-decoration: none;
+}
+.team-members li a {
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+.intro {
+    margin: 20px;
+    color: #fff;
+    font-size: 1.5em;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.footer {
+    margin-top: auto;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    width: 100%;
+}
+
+/* New styles for the mission box */
+.mission-box {
+    background-color: rgba(50, 50, 50, 0.8); /* Dark grey with some transparency */
+    color: #fff;
+    padding: 20px;
+    width: 66%; /* 2/3 of the page width */
+    margin: 20px auto; /* Centered horizontally */
+    border-radius: 10px; /* Rounded corners */
+}
+
+.mission-box p {
+    font-size: 1.2em;
+}
+
+
+
