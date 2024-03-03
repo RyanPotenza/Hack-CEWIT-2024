@@ -1,0 +1,100 @@
+Make,Model,Battery Capacity (kWh),Total Range (miles)
+Audi,Q4 e-tron 40 Premium,82.0,265
+Audi,Q5 e,17.9,390
+Audi,Q4 e-tron 50 Premium,82.0,242
+Audi,e-tron,95.0,226
+Audi,e-tron S SUV,95.0,208
+Audi,e-tron GT,95.0,240
+BMW,330e,12.0,320
+BMW,330e xDrive Style,12.0,320
+BMW,i4 eDrive35,81.0,307
+BMW,530e,12.0,350
+BMW,i4 eDrive40,81.0,307
+BMW,X5 PHEV xDrive50e,25.7,440
+BMW,iX xDrive50,105.2,324
+BMW,iX M60,105.2,324
+BMW,i7 M70,101.7,318
+BrightDrop,Zevo 400,165.0,250
+BrightDrop,Zevo 600,165.0,250
+Cadillac,Lyriq Available Late 2023,102.0,307
+Chevrolet,Bolt EV,65.0,259
+Chevrolet,Bolt EUV,65.0,247
+Chevrolet,Blazer EV Available Fall 2023,85.0,320
+Chevrolet,Equinox,200.0,300
+Chevrolet,Silverado Electric Work Truck Style,200.0,400
+Chrysler,Pacifica Hybrid Pinnacle Style,16.0,520
+Fisker,Ocean Ultra,80.0,340
+Ford,Escape Plug-in Hybrid,14.4,520
+Ford,E-Transit,67.0,116
+Ford,Explorer EV,52.0,335
+Ford,F-150 Lightning,98.0,300
+Ford,Mustang Mach E,91.0,312
+Freightliner,eCascadia 438 kWh battery,438.0,230
+Freightliner,eCascadia 291 kWh battery,291.0,155
+Freightliner,eM2,unknown,230
+Genesis,Electrified G80 Available 2025,87.2,0
+GMC,Hummer EV SUV 2X Style,246.0,314
+GMC,Hummer EV Pickup Pickup 2X,246.0,381
+GMC,Sierra EV Denali Edition 1 Available Spring 2024,200.0,400
+GMC,Sierra EV AT4 Available Late 2024,200.0,400
+GMC,Sierra EV Elevation Available Early 2025,200.0,400
+Hyundai,TUCSON Plug-In Hybrid SEL Style,13.8,420
+Hyundai,IONIQ 5,58.0,303
+Hyundai,IONIQ 6,77.4,361
+Hyundai,KONA Electric,64.8,260
+Jaguar,I-Pace,90.0,292
+Jeep,Wrangler 4xe Rubicon Style,17.3,370
+Jeep,Grand Cherokee 4xe Base Style,17.3,440
+Kia,EV6,77.4,310
+Kia,Niro EV,648.0,253
+Kia,Niro Plug-In Hybrid,11.1,510
+Kia,Sorento Plug-In Hybrid,14.0,460
+Kia,Sportage Plug-In Hybrid,13.8,430
+Lexus,NX 450h+ Luxury Style,18.1,550
+Lincoln,Aviator Grand Touring Available Early 2024,13.6,400
+Lincoln,Corsair Grand Touring Available Late 2023,14.4,430
+Lion Electric,Lion 6 4 Battery,252.0,155
+Lion Electric,Lion 6 6 Battery,336.0,180
+Lucid,Air Available Early 2024,118.0,410
+Mazda,CX-90 PHEV Premium,17.8,490
+Mercedes-Benz,GLE 450 Plug-In Hybrid Base GLE 450,1.0,427
+Mercedes-Benz,EQS450+ Base Sedan RWD,107.8,350
+Mini,SE Hardtop Cooper 2-Door,54.2,250
+Mitsubishi,Outlander PHEV SE Style,20.0,420
+Nissan,LEAF S 4dr,40.0,149
+Nissan,LEAF SV PLUS,60.0,215
+Nissan,Ariya ENGAGE+ Style,63.0,530
+Polestar,Polestar 2,82.0,320
+Porsche,Panamera E-Hybrid 4,17.9,480
+Porsche,Panamera E-Hybrid Turbo S,17.9,430
+Porsche,Cayenne E-Hybrid,25.9,356
+Porsche,Taycan 4S Style,79.0,246
+SEA Electric,SEA HINO EV M5,138.0,200
+Subaru,Crosstrek Hybrid Premium,8.8,480
+Subaru,Solterra,71.4,220
+Tesla,Cybertruck Single Motor RWD,120.0,250
+Tesla,Cybertruck Dual Motor AWD,unknown,300
+Tesla,Cybertruck Tri Motor AWD,unknown,500
+Tesla,Semi 300 mile range,unknown,300
+Tesla,Semi 500 mile range,unknown,500
+Tesla,Model 3 Available Q1 2024,57.5,400
+Tesla,Model S,100.0,405
+Tesla,Model X Available Early 2024,100.0,475
+Tesla,Model Y Available Early 2024,57.5,400
+Toyota,Prius Prime XSE Style,13.1,640
+Toyota,BZ4X XLE Available 2024,65.5,222
+Toyota,RAV4 Prime SE Style,18.1,600
+Volkswagen,ID.4 62 kWh Single Motor,62.0,209
+Volkswagen,ID.4 82 kWh Single Motor,82.0,275
+Volkswagen,ID.4 82 kWh Dual Motor,82.0,255
+Volvo,C40 Recharge Pure Electric Core 4dr,79.0,297
+Volvo,C40 Recharge Pure Electric Twin Core 4dr,75.0,257
+Volvo,S60 Recharge Plug-In Hybrid T8 Core,18.8,530
+Volvo,S60 Recharge Plug-In Hybrid,18.8,530
+Volvo,S90 Recharge Plug-In Hybrud T8 Plus,18.8,490
+Volvo,V60 Recharge Plug-In Hybrid T8 Polestar Engineered,18.8,523
+Volvo,XC40 Recharge Pure Electric Core,79.0,293
+Volvo,XC40 Recharge Pure Electric Twin Core,75.0,293
+Volvo,XC60 Recharge Plug-In Hybrid T8 Core,18.8,560
+Volvo,XC90 Recharge Plug-In Hybrid T8 Plus 6-Seater,18.8,560
+XOS,SV05 120 kWh,120.0,0

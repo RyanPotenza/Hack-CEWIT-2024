@@ -1,0 +1,499 @@
+[
+  {
+    "Name": "Audi Q4 e-tron 40 Premium",
+    "Battery Capacity (kWh)": 82.0,
+    "Total Range (miles)": 265
+  },
+  {
+    "Name": "Audi Q5 e",
+    "Battery Capacity (kWh)": 17.9,
+    "Total Range (miles)": 390
+  },
+  {
+    "Name": "Audi Q4 e-tron 50 Premium",
+    "Battery Capacity (kWh)": 82.0,
+    "Total Range (miles)": 242
+  },
+  {
+    "Name": "Audi e-tron",
+    "Battery Capacity (kWh)": 95.0,
+    "Total Range (miles)": 226
+  },
+  {
+    "Name": "Audi e-tron S SUV",
+    "Battery Capacity (kWh)": 95.0,
+    "Total Range (miles)": 208
+  },
+  {
+    "Name": "Audi e-tron GT",
+    "Battery Capacity (kWh)": 95.0,
+    "Total Range (miles)": 240
+  },
+  {
+    "Name": "BMW 330e",
+    "Battery Capacity (kWh)": 12.0,
+    "Total Range (miles)": 320
+  },
+  {
+    "Name": "BMW 330e xDrive Style",
+    "Battery Capacity (kWh)": 12.0,
+    "Total Range (miles)": 320
+  },
+  {
+    "Name": "BMW i4 eDrive35",
+    "Battery Capacity (kWh)": 81.0,
+    "Total Range (miles)": 307
+  },
+  {
+    "Name": "BMW 530e",
+    "Battery Capacity (kWh)": 12.0,
+    "Total Range (miles)": 350
+  },
+  {
+    "Name": "BMW i4 eDrive40",
+    "Battery Capacity (kWh)": 81.0,
+    "Total Range (miles)": 307
+  },
+  {
+    "Name": "BMW X5 PHEV xDrive50e",
+    "Battery Capacity (kWh)": 25.7,
+    "Total Range (miles)": 440
+  },
+  {
+    "Name": "BMW iX xDrive50",
+    "Battery Capacity (kWh)": 105.2,
+    "Total Range (miles)": 324
+  },
+  {
+    "Name": "BMW iX M60",
+    "Battery Capacity (kWh)": 105.2,
+    "Total Range (miles)": 324
+  },
+  {
+    "Name": "BMW i7 M70",
+    "Battery Capacity (kWh)": 101.7,
+    "Total Range (miles)": 318
+  },
+  {
+    "Name": "BrightDrop Zevo 400",
+    "Battery Capacity (kWh)": 165.0,
+    "Total Range (miles)": 250
+  },
+  {
+    "Name": "BrightDrop Zevo 600",
+    "Battery Capacity (kWh)": 165.0,
+    "Total Range (miles)": 250
+  },
+  {
+    "Name": "Cadillac Lyriq Available Late 2023",
+    "Battery Capacity (kWh)": 102.0,
+    "Total Range (miles)": 307
+  },
+  {
+    "Name": "Chevrolet Bolt EV",
+    "Battery Capacity (kWh)": 65.0,
+    "Total Range (miles)": 259
+  },
+  {
+    "Name": "Chevrolet Bolt EUV",
+    "Battery Capacity (kWh)": 65.0,
+    "Total Range (miles)": 247
+  },
+  {
+    "Name": "Chevrolet Blazer EV Available Fall 2023",
+    "Battery Capacity (kWh)": 85.0,
+    "Total Range (miles)": 320
+  },
+  {
+    "Name": "Chevrolet Equinox",
+    "Battery Capacity (kWh)": 200.0,
+    "Total Range (miles)": 300
+  },
+  {
+    "Name": "Chevrolet Silverado Electric Work Truck Style",
+    "Battery Capacity (kWh)": 200.0,
+    "Total Range (miles)": 400
+  },
+  {
+    "Name": "Chrysler Pacifica Hybrid Pinnacle Style",
+    "Battery Capacity (kWh)": 16.0,
+    "Total Range (miles)": 520
+  },
+  {
+    "Name": "Fisker Ocean Ultra",
+    "Battery Capacity (kWh)": 80.0,
+    "Total Range (miles)": 340
+  },
+  {
+    "Name": "Ford Escape Plug-in Hybrid",
+    "Battery Capacity (kWh)": 14.4,
+    "Total Range (miles)": 520
+  },
+  {
+    "Name": "Ford E-Transit",
+    "Battery Capacity (kWh)": 67.0,
+    "Total Range (miles)": 116
+  },
+  {
+    "Name": "Ford Explorer EV",
+    "Battery Capacity (kWh)": 52.0,
+    "Total Range (miles)": 335
+  },
+  {
+    "Name": "Ford F-150 Lightning",
+    "Battery Capacity (kWh)": 98.0,
+    "Total Range (miles)": 300
+  },
+  {
+    "Name": "Ford Mustang Mach E",
+    "Battery Capacity (kWh)": 91.0,
+    "Total Range (miles)": 312
+  },
+  {
+    "Name": "Freightliner eCascadia 438 kWh battery",
+    "Battery Capacity (kWh)": 438.0,
+    "Total Range (miles)": 230
+  },
+  {
+    "Name": "Freightliner eCascadia 291 kWh battery",
+    "Battery Capacity (kWh)": 291.0,
+    "Total Range (miles)": 155
+  },
+  {
+    "Name": "Freightliner eM2",
+    "Battery Capacity (kWh)": "unknown",
+    "Total Range (miles)": 230
+  },
+  {
+    "Name": "Genesis Electrified G80 Available 2025",
+    "Battery Capacity (kWh)": 87.2,
+    "Total Range (miles)": 0
+  },
+  {
+    "Name": "GMC Hummer EV SUV 2X Style",
+    "Battery Capacity (kWh)": 246.0,
+    "Total Range (miles)": 314
+  },
+  {
+    "Name": "GMC Hummer EV Pickup Pickup 2X",
+    "Battery Capacity (kWh)": 246.0,
+    "Total Range (miles)": 381
+  },
+  {
+    "Name": "GMC Sierra EV Denali Edition 1 Available Spring 2024",
+    "Battery Capacity (kWh)": 200.0,
+    "Total Range (miles)": 
+
+400
+  },
+  {
+    "Name": "GMC Sierra EV AT4 Available Late 2024",
+    "Battery Capacity (kWh)": 200.0,
+    "Total Range (miles)": 400
+  },
+  {
+    "Name": "GMC Sierra EV Elevation Available Early 2025",
+    "Battery Capacity (kWh)": 200.0,
+    "Total Range (miles)": 400
+  },
+  {
+    "Name": "Hyundai TUCSON Plug-In Hybrid SEL Style",
+    "Battery Capacity (kWh)": 13.8,
+    "Total Range (miles)": 420
+  },
+  {
+    "Name": "Hyundai IONIQ 5",
+    "Battery Capacity (kWh)": 58.0,
+    "Total Range (miles)": 303
+  },
+  {
+    "Name": "Hyundai IONIQ 6",
+    "Battery Capacity (kWh)": 77.4,
+    "Total Range (miles)": 361
+  },
+  {
+    "Name": "Hyundai KONA Electric",
+    "Battery Capacity (kWh)": 64.8,
+    "Total Range (miles)": 260
+  },
+  {
+    "Name": "Jaguar I-Pace",
+    "Battery Capacity (kWh)": 90.0,
+    "Total Range (miles)": 292
+  },
+  {
+    "Name": "Jeep Wrangler 4xe Rubicon Style",
+    "Battery Capacity (kWh)": 17.3,
+    "Total Range (miles)": 370
+  },
+  {
+    "Name": "Jeep Grand Cherokee 4xe Base Style",
+    "Battery Capacity (kWh)": 17.3,
+    "Total Range (miles)": 440
+  },
+  {
+    "Name": "Kia EV6",
+    "Battery Capacity (kWh)": 77.4,
+    "Total Range (miles)": 310
+  },
+  {
+    "Name": "Kia Niro EV",
+    "Battery Capacity (kWh)": 648.0,
+    "Total Range (miles)": 253
+  },
+  {
+    "Name": "Kia Niro Plug-In Hybrid",
+    "Battery Capacity (kWh)": 11.1,
+    "Total Range (miles)": 510
+  },
+  {
+    "Name": "Kia Sorento Plug-In Hybrid",
+    "Battery Capacity (kWh)": 14.0,
+    "Total Range (miles)": 460
+  },
+  {
+    "Name": "Kia Sportage Plug-In Hybrid",
+    "Battery Capacity (kWh)": 13.8,
+    "Total Range (miles)": 430
+  },
+  {
+    "Name": "Lexus NX 450h+ Luxury Style",
+    "Battery Capacity (kWh)": 18.1,
+    "Total Range (miles)": 550
+  },
+  {
+    "Name": "Lincoln Aviator Grand Touring Available Early 2024",
+    "Battery Capacity (kWh)": 13.6,
+    "Total Range (miles)": 400
+  },
+  {
+    "Name": "Lincoln Corsair Grand Touring Available Late 2023",
+    "Battery Capacity (kWh)": 14.4,
+    "Total Range (miles)": 430
+  },
+  {
+    "Name": "Lion Electric Lion 6 4 Battery",
+    "Battery Capacity (kWh)": 252.0,
+    "Total Range (miles)": 155
+  },
+  {
+    "Name": "Lion Electric Lion 6 6 Battery",
+    "Battery Capacity (kWh)": 336.0,
+    "Total Range (miles)": 180
+  },
+  {
+    "Name": "Lucid Air Available Early 2024",
+    "Battery Capacity (kWh)": 118.0,
+    "Total Range (miles)": 410
+  },
+  {
+    "Name": "Mazda CX-90 PHEV Premium",
+    "Battery Capacity (kWh)": 17.8,
+    "Total Range (miles)": 490
+  },
+  {
+    "Name": "Mercedes-Benz GLE 450 Plug-In Hybrid Base GLE 450",
+    "Battery Capacity (kWh)": 1.0,
+    "Total Range (miles)": 427
+  },
+  {
+    "Name": "Mercedes-Benz EQS450+ Base Sedan RWD",
+    "Battery Capacity (kWh)": 107.8,
+    "Total Range (miles)": 350
+  },
+  {
+    "Name": "Mini SE Hardtop Cooper 2-Door",
+    "Battery Capacity (kWh)": 54.2,
+    "Total Range (miles)": 250
+  },
+  {
+    "Name": "Mitsubishi Outlander PHEV SE Style",
+    "Battery Capacity (kWh)": 20.0,
+    "Total Range (miles)": 420
+  },
+  {
+    "Name": "Nissan LEAF S 4dr",
+    "Battery Capacity (kWh)": 40.0,
+    "Total Range (miles)": 149
+  },
+  {
+    "Name": "Nissan LEAF SV PLUS",
+    "Battery Capacity (kWh)": 60.0,
+    "Total Range (miles)": 215
+  },
+  {
+    "Name": "Nissan Ariya ENGAGE+ Style",
+    "Battery Capacity (kWh)": 63.0,
+    "Total Range (miles)": 530
+  },
+  {
+    "Name": "Polestar Polestar 2",
+    "Battery Capacity (kWh)": 82.0,
+    "Total Range (miles)": 320
+  },
+  {
+    "Name": "Porsche Panamera E-Hybrid 4",
+    "Battery Capacity (kWh)": 17.9,
+    "Total Range (miles)": 480
+  },
+  {
+    "Name": "Porsche Panamera E-Hybrid Turbo S",
+    "Battery Capacity (kWh)": 17.9,
+    "Total Range (miles)": 430
+  },
+  {
+    "Name": "Porsche Cayenne E-Hybrid",
+    "Battery Capacity (kWh)": 25.9,
+    "Total Range (miles)": 356
+  },
+  {
+    "Name": "Porsche Taycan 4S Style",
+    "Battery Capacity (kWh)": 79.0,
+    "Total Range (miles)": 246
+  },
+  {
+    "Name": "SEA Electric SEA HINO EV M5",
+    "Battery Capacity (kWh)": 138.0,
+    "Total Range (miles)": 200
+  },
+  {
+    "Name": "Subaru Crosstrek Hybrid Premium",
+    "Battery Capacity (kWh)": 8.8,
+    "Total Range (miles)": 480
+  },
+  {
+    "Name": "Subaru Solterra",
+    "Battery Capacity (kWh)": 71.4,
+    "Total Range (miles)": 220
+  },
+  {
+    "Name": "Tesla Cybertruck Single Motor RWD",
+    "Battery Capacity (kWh)": 120.0,
+    "Total Range (miles)": 250
+  },
+  {
+    "Name": "Tesla Cybertruck Dual Motor AWD",
+    "Battery Capacity (kWh)": "unknown",
+    "Total Range (miles)": 300
+  },
+  {
+    "Name": "Tesla Cybertruck Tri Motor AWD",
+    "Battery Capacity (kWh)": "unknown",
+    "Total Range (miles)": 500
+  },
+  {
+    "Name": "Tesla Semi 300 mile range",
+    "Battery Capacity (kWh)": "unknown",
+    "Total Range (miles)": 300
+  },
+  {
+    "Name": "Tesla Semi 500 mile range",
+    "Battery Capacity (kWh)": "unknown",
+    "Total Range (miles)": 500
+  },
+  {
+    "Name": "Tesla Model 3 Available Q1 2024",
+    "Battery Capacity (kWh)": 57.5,
+    "Total Range (miles)": 400
+  },
+  {
+    "Name": "Tesla Model S",
+    "Battery Capacity (kWh)": 100.0,
+    "Total Range (miles)": 405
+  },
+  {
+    "Name": "Tesla Model X Available Early 2024",
+    "Battery Capacity (kWh)": 100.0,
+    "Total Range (miles)": 475
+  },
+  {
+    "Name": "Tesla Model Y Available Early 2024",
+    "Battery Capacity (kWh)": 57.5,
+    "Total Range (miles)": 400
+  },
+  {
+    "Name": "Toyota Prius Prime XSE Style",
+    "Battery Capacity (kWh)": 13.1,
+    "Total Range (miles)": 640
+  },
+  {
+    "Name": "Toyota BZ4X XLE Available 2024",
+    "Battery Capacity (kWh)": 65.5,
+    "Total Range (miles)": 222
+  },
+  {
+    "Name": "Toyota RAV4 Prime SE Style",
+    "Battery Capacity (kWh)": 18.1,
+    "Total Range (miles)": 600
+  },
+  {
+    "Name": "Volkswagen ID.4 62 kWh Single Motor",
+    "Battery Capacity (kWh)": 62.0,
+    "Total Range (miles)": 209
+  },
+  {
+    "Name": "Volkswagen ID.4 82 kWh Single Motor",
+    "Battery Capacity (kWh)": 82.0,
+    "Total Range (miles)": 275
+  },
+  {
+    "Name": "Volkswagen ID.4 82 kWh Dual Motor",
+    "Battery Capacity (kWh)": 82.0,
+    "Total Range (miles)": 255
+  },
+  {
+    "Name": "Volvo C40 Recharge Pure Electric Core 4dr",
+    "Battery Capacity (kWh)": 79.0,
+    "Total Range (miles)": 297
+  },
+  {
+    "Name": "Volvo C40 Recharge Pure Electric Twin Core 4dr",
+    "Battery Capacity (kWh)": 75.0,
+    "Total Range (miles)": 257
+  },
+  {
+    "Name": "Volvo S60 Recharge Plug-In Hybrid T8 Core",
+    "Battery Capacity (kWh)": 18.8,
+    "Total Range (miles)": 530
+  },
+  {
+    "Name": "Volvo S60 Recharge Plug-In Hybrid",
+    "Battery Capacity (kWh)": 18.8,
+    "Total Range (miles)": 530
+  },
+  {
+    "Name": "Volvo S90 Recharge Plug-In Hybrid T8 Plus",
+    "Battery Capacity (kWh)": 18.8,
+    "Total Range (miles)": 490
+  },
+  {
+    "Name": "Volvo V60 Recharge Plug-In Hybrid T8 Polestar Engineered",
+    "Battery Capacity (kWh)": 18.8,
+    "Total Range (miles)": 523
+  },
+  {
+    "Name": "Volvo XC40 Recharge Pure Electric Core",
+    "Battery Capacity (kWh)": 79.0,
+    "Total Range (miles)": 293
+  },
+  {
+    "Name": "Volvo XC40 Recharge Pure Electric Twin Core",
+    "Battery Capacity (kWh)": 75.0,
+    "Total Range (miles)": 293
+  },
+  {
+    "Name": "Volvo XC60 Recharge Plug-In Hybrid T8 Core",
+    "Battery Capacity (kWh)": 18.8,
+    "Total Range (miles)": 560
+  },
+  {
+    "Name": "Volvo XC90 Recharge Plug-In Hybrid T8 Plus 6-Seater",
+    "Battery Capacity (kWh)": 18.8,
+    "Total Range (miles)": 560
+  },
+  {
+    "Name": "XOS SV05 120 kWh",
+    "Battery Capacity (kWh)": 120.0,
+    "Total Range (miles)": 0
+  }
+]

@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, url_for
+from flask import Flask, request, render_template, jsonify
 from flask_restful import Resource, Api
 from flask_cors import CORS
 
@@ -11,6 +11,12 @@ api = Api(app)
 client = get_client()
 
 CORS(app) #Enable Cross-Origin Resource Sharing
+
+@app.route('/get-ev-models')
+def get_ev_models():
+    ev_models = r.hgetall('ev_models')  # Assuming data is stored in a hash
+    ev_models_dict = {key.decode('utf-8'): value.decode('utf-8') for key, value in ev_models.items()}
+    return jsonify(ev_models_dict)
 
 class EVRoute(Resource):
     def post(self):
@@ -58,4 +64,5 @@ def map():
 
 if __name__ == '__main__':
     app.run(debug=True)
+    
 
