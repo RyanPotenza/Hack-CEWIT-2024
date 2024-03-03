@@ -105,9 +105,8 @@ function displayTransitRoute() {
                 // Get the last leg of the transit route
                 const lastLeg = response.routes[0].legs[response.routes[0].legs.length - 1];
 
-                // Extract duration from the last transit leg
-                const durationInSeconds = lastLeg.duration.value;
-                const durationInMinutes = Math.round(durationInSeconds / 60);
+                // Extract duration from the last transit leg in secs --> conv to mins
+                const durationInMinutes = Math.round(lastLeg.duration.value / 60);
 
                 document.getElementById('navigationTime').textContent = `Navigation Time: ${durationInMinutes} minutes`;
             } else {

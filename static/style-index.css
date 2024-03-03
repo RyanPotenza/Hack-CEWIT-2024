@@ -17,7 +17,7 @@ body {
 }
 
 header {
-    background-color: rgba(50, 50, 50, 0.8); /* Dark grey with the same transparency as the mission box */
+    background-color: rgba(50, 50, 50, 0.8);
     color: #fff;
     padding: 20px;
     width: 100%;
@@ -85,14 +85,13 @@ header h2 {
     width: 100%;
 }
 
-/* New styles for the mission box */
 .mission-box {
-    background-color: rgba(50, 50, 50, 0.8); /* Dark grey with some transparency */
+    background-color: rgba(50, 50, 50, 0.8);
     color: #fff;
     padding: 20px;
-    width: 66%; /* 2/3 of the page width */
-    margin: 20px auto; /* Centered horizontally */
-    border-radius: 10px; /* Rounded corners */
+    width: 66%;
+    margin: 20px auto;
+    border-radius: 10px;
 }
 
 .mission-box p {

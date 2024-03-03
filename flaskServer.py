@@ -29,7 +29,6 @@ class EVRoute(Resource):
         # Calculate emissions
         ev_emissions = EVEmissions(client, starting_location, destination_location, ev_battery_capacity)
         
-
         # Prepare response data
         response_data = {
             'emissions': ev_emissions,
