@@ -23,20 +23,200 @@
             <p>Discover a sustainable way to plan your routes with the EV Route Planner.</p>
             <a href="map.html" class="btn">Go to EV Route Planner</a>
         </section>
-
+        
         <section class="mission-box">
             <p>
                 In the ever-evolving landscape of transportation, our project addresses a crucial puzzle: optimizing electric vehicle route planning. As electric vehicles redefine the road ahead, our focus lies in navigating the complexities of efficient route selection, with a keen eye on environmental impact. A central aspect of our solution involves strategically choosing supercharger stations powered by cleaner energy sources, enhancing the sustainability of electric vehicle journeys. Beyond route optimization, our project meticulously tracks the carbon footprints of utilized charging stations, public transport, and gas vehicles, providing users with comprehensive insights into their environmental impact and travel time. We believe our solution is a practical step towards a future where eco-conscious choices are seamlessly integrated into our daily commutes, contributing to a cleaner and more sustainable transportation ecosystem.
-                <br><br> Using this tool requires a GCP API Key. When a key is obtained, create a file titled "APIKey.txt" in the base directory of the repository and paste the raw key on the first line.
             </p>
         </section>
 
+        <div class="spacing"></div>
+
+        <div class="methodology-header">
+            <h2><u>Background</u></h2>
+        </div>
+
+        <div class="spacing"></div>
+
+        <section class="methodology-box">
+            <p>
+                Over the past few decades, the emergence of electric vehicles has begun to revolutionize the carbon footprints of the average driver.
+                With a healthy alternative to gas vehicles, it has never been easier to do your part to lower your individual carbon footprint... 
+                <br><br>
+                Or has it?
+                <br><br>
+                The sort answer is yes, it has. But by how much? The energy that is used in EV charging stations has to be sourced from somewhere. Electricity
+                for EV charging stations is sourced from the local grids. Local grids source their electricity from local power plants, and depending on how
+                powerplants produce their energy, can still come with a high carbon footprint.<br><br>
+            </p>
+
+            <img src="/static/average-emissions.png" alt="Average Emissions">
+
+            <p>
+                <br><br>
+                The image above exposes the high presence of harmful energy sources fuelling energy grids. Electric vehicle drivers may believe they are
+                protecting the atmostphere better than their gasoline-consuming counterparts - but could be sourcing energy from
+                a coal plant feeding into high levels of carbon emissions.
+                <br><br>
+                With this problem comes opportunity for optimization. This project aims to identify the most potentially "dirty" charging stations that source 
+                their energy from harmful sources. By identifying these harmful stations, new routes can be suggested to EV drivers to target more eco-friendly
+                charging stations on their trips while minimizing additional time. This optimization problem is what we set out to solve.
+            </p>
+        </section>
+
+        <!-- Spacing between sections -->
+        <div class="spacing"></div>
+
+        <div class="methodology-header">
+            <h2><u>Methodology</u></h2>
+        </div>
+
+        <div class="spacing"></div>
+
+        <section class="methodology-box">
+            <h3><u>Comparisons</u></h3>
+            <p>
+                The first goal of this project was to provide a visual comparision between our optimimal navigation routes and their gasoline-fueled counterparts
+                to do this we utilized basic google maps navigations for both public transportation and driving. Carbon emissions were calculated with simple equations
+                and constant values. The constants we used were as follows:
+                <br>
+                <br>
+                Trains: 0.15 kg CO2/kM (Per Person)
+                <br>
+                Busses: 0.089 kg CO2/kM (Per Person)
+                <br>
+                Average Gas Vehicle: 0.17 kg CO2/kM
+                <br>
+                <br>
+                Distances were deriven from the googlemaps API and multiplied against these constants to get the total CO2 emissions. Public 
+                transport took into account each leg of the navigation to factor in the possibility of multiple different travel mechanisms.
+                When a transportation mechanism is selected, the CO2 emissions and total time are automatically displayed alongside the route.
+                These options are included to allow us to gauge the importance and effect of our pursuits, but also to allow potential customers to understand the level of impact that their travel decisions have on the environment,
+                with the hope of persuading them to make the most eco-friendly decision. 
+            </p>
+        
+            <h3><u>Charging Station Classification and Mapping</u></h3>
+            <p>
+                The main method we are pursuing to reduce the carbon footprint of EV drivers is by calculating the level of energy cleanliness
+                that is being sourced to charging stations. The first step we took to do this was mapping out all power plants in the USA. This can be seen in the left image below.
+                To the right of that image is an example of how we track the charging locations available on a calculated route obtained through API calls. 
+            </p>
+
+            <div class="image-container">
+                <img src="/static/power-plants.png" alt="Power Plants" class="side-by-side-image">
+                <img src="/static/charging-stations.png" alt="Charging Stations" class="side-by-side-image">
+            </div>
+
+            <p>
+                With locations of both power plants and charging stations available on a desired route, we can make an educated assumption on how clean the energy of a particular
+                charging station is. To calculate this, we utilized a dataset that provides the kg CO2 per MWh. The conversion chart is depicted below.
+            </p>
+
+            <div class="image-container">
+                <img src="/static/power-plant-energy.png" alt="Power Plant Conversion Chart" class="side-by-side-image">
+            </div>
+
+            <p>
+                <br>
+                When an EV charges at a particular station, it consumes a set amount of energy. This amount of energy can be used
+                to calculate the total CO2 emissions from a given charge. We factored in not just the closest powerplant, but any powerplants
+                close enough to potentially source energy to the station. We allocated fractions of the power consumed by an EV at a charging
+                station to each local powerplant determined by their relative distances to the charging station.
+                <br>
+                <br>
+                We also managed to factor in a large dataset of electric vehicles for the user to select from. This dataset contains a vehicle's make and model,
+                but also the battery capacity and range of the vehicle on a full charge. This allows us to tailor our route planning to a variety of different
+                EV's and to observe how different vehicles may potentially have different optimal paths based on their characteristics.
+            </p>
+        
+            <h3><u>Reinforcement Learning Navigation Optimization</u></h3>
+            <p>
+                In order to solve our optimization problem, we employed a reinforcement learning model to determine the most efficient route in terms 
+                of CO2 emissions and time.
+            </p>
+        </section>
+
+
+        <!-- Spacing between sections -->
+        <div class="spacing"></div>
+
+        <div class="methodology-header">
+            <h2><u>Results</u></h2>
+        </div>
+
+        <div class="spacing"></div>
+
+        <section class="methodology-box">
+            <h3><u>Potential Use Case</u></h3>
+            <p>
+
+            </p>
+        
+            <h3><u>Limitations</u></h3>
+            <p>
+                Due to our restricted time frame, we had to cut corners in various areas. While our data is a good representation of the general levels of CO2 emissions from 
+                the transportations mechanisms we observed, many values were pulled from various online sources which we have not had the chance to authenticate.
+                <br>
+                <br>
+                Another limitation of this project lies in the means of calculating the weights of nearby powerplants on particular charging stations. While the proximity of a powerplant 
+                to a charging station is a fair indicator of the origin on the energy being sourced to EV's, it is based on an assumption and not concrete data.
+            </p>
+        
+            <h3><u>Potential Improvements</u></h3>
+            <p>
+                Another consequence of our restricted time frame is a long list of ideas we have for this project that we did not get the chance to implement. 
+                Some things we considered factoring in included prices associated with means of travel, including things like gas and charging prices, and fares for 
+                public transport. Another thing we wanted to do was utilize temperature and elevation data which affects the energy capacity and efficiency of an EV, in order 
+                to further optimize our routing.
+                <br>
+                <br>
+                In terms of taking this idea past our scope of a 3 day hackathon event, we see multiple avenues. Firstly, this web app could potentially be upscaled and 
+                distributed as a public application for everyday users. The intention would be to educate people into making better decisions regarding how they travel. 
+                An idea like this could include features such as tracking how many kg of CO2 they avoided emitting based on their travel decisions, and potentially sharing 
+                those values in a social media atmosphere to promote eco-friendliness in a fun way. 
+                <br>
+                <br>
+                The other avenue we see a service like this potentially heading down is a privatized product for large navigation companies such as waze, tesla, or google.
+                Depending on how efficiently our algorithms can be optimized in the future, there is potential for these features to be integrated into some of the current 
+                navigation platforms, creating an effective method of monetizing this technology.
+            </p>
+        </section>
+
+        <!-- Spacing between sections -->
+        <div class="spacing"></div>
+
+        <div class="methodology-header">
+            <h2><u>Directions for use</u></h2>
+        </div>
+
+        <div class="spacing"></div>
+
+        <section class="methodology-box">
+            <p>
+                Using this tool requires a GCP API Key. When a key is obtained, create a file titled "APIKey.txt" in the base directory of the repository and paste the raw key on the first line.
+                <br><br>
+                The web app is run locally off of a flask server. In order to access the service at any point, ensure that the flask server is currently running.
+                <br><br>
+                Follow these steps to recreate this demo on a local machine:
+                <br><ol style="padding-left: 20px; margin: 0; list-style: decimal inside;">
+                    <li>Clone the repository to your local machine</li>
+                    <li>Navigate to the directory of the cloned repository</li>
+                    <li>Run the "flaskServer.py" file to start the flaskServer. Do not close the terminal</li>
+                    <li>Access the home page at http://localhost:5000/</li>
+                </ol>
+
+            </p>
+        </section>
+
+        <!-- Your existing footer -->
         <footer class="footer">
             This project is a product of the 2024 Hack@CEWIT Hackathon run by the Center of Excellence in Wireless and Information Technology (CEWIT) at Stony Brook University.
         </footer>
     </div>
 </body>
 </html>
+
+
 
 
 
