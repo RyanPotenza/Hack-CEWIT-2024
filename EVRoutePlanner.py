@@ -4,7 +4,64 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
+import polyline
+
 from typing import List, Dict, Any, Tuple
+
+from geopy.distance import geodesic
+
+
+class PathInterpolator:
+    def __init__(self, api_key, interval_meters=10000):
+        self.gmaps = googlemaps.Client(key=api_key)
+        self.interval_meters = interval_meters
+
+    def get_points_at_intervals(self, origin, destination):
+        # # Request directions
+        directions_result = self.gmaps.directions(origin, destination)
+
+        # Extract the encoded polyline
+        # encoded_polyline = route['overview_polyline']['points']
+        encoded_polyline = directions_result[0]['overview_polyline']['points']
+
+        # Decode the polyline to get a list of latitude and longitude points
+        path = polyline.decode(encoded_polyline)
+
+        print("HERE")
+
+        
+        # print(path)
+
+        # Interpolate points along the path
+        return self._interpolate_points(path, self.interval_meters)
+
+    def _interpolate_points(self, path, interval_meters):
+        points = [path[0]]
+        remaining_distance = interval_meters
+        for i in range(1, len(path)):
+            # Calculate the distance between the current and next point
+            distance = geodesic(path[i - 1], path[i]).meters
+            while distance >= remaining_distance:
+                # Interpolate a new point along the segment
+                ratio = remaining_distance / distance
+                new_point = (
+                    path[i - 1][0] + ratio * (path[i][0] - path[i - 1][0]),
+                    path[i - 1][1] + ratio * (path[i][1] - path[i - 1][1])
+                )
+                points.append(new_point)
+                path[i - 1] = new_point
+                distance -= remaining_distance
+                remaining_distance = interval_meters
+            remaining_distance -= distance
+        return points
+
+# origin = 'New York, NY'
+# destination = 'Los Angeles, CA'
+# interval_meters = 10000  # 10 kilometers
+
+# interpolator = PathInterpolator(api_key)
+# points = interpolator.get_points_at_intervals(origin, destination, interval_meters)
+# print(points)
 
 class GooglePlacesClient:
     def __init__(self, api_key: str):
@@ -33,7 +90,6 @@ class GooglePlacesClient:
             return []
 
         return results['results']
-    
 class GoogleMapsClient:
     def __init__(self, api_key: str):
         self.client = googlemaps.Client(key=api_key)
@@ -63,6 +119,7 @@ class EVRoutePlanner:
         """
         self.maps_client = GoogleMapsClient(api_key)
         self.places_client = GooglePlacesClient(api_key)
+        self.paths_interpolator = PathInterpolator(api_key,30000)
         self.start = start
         self.end = end
         self.vehicle_range = vehicle_range
@@ -83,8 +140,12 @@ class EVRoutePlanner:
         keepGoing = True
         while keepGoing:
             # try:
-            route_segment = self.maps_client.get_route(current_location, self.end)
-            nodes = self._route_to_nodes(route_segment)
+            # route_segment = self.maps_client.get_route(current_location, self.end)
+            path = self.paths_interpolator.get_points_at_intervals(current_location, self.end)
+            print(len(path))
+
+            nodes = self.path_to_nodes(path)
+
             # self.end = (nodes[-1]['lat'], nodes[-1]['lng'])
             for i, node in enumerate(nodes):
                 print(f"Processing node {i + 1} of {len(nodes)}")
@@ -143,14 +204,13 @@ class EVRoutePlanner:
                 currentDist += nodes[current_node_i]['dist']
                 if 'nearest_ev_station_distance' in nodes[current_node_i]:
                     currentDist += nodes[current_node_i]['nearest_ev_station_distance']
-                    print(f"Nearest station distance: {nodes[current_node_i]['nearest_ev_station_distance']}")
+                    # print(f"Nearest station distance: {nodes[current_node_i]['nearest_ev_station_distance']}")
                     print(f"Current distance: {currentDist}")
-                    print(f"EV range: {self.vehicle_range}")
                     return currentDist > self.vehicle_range
                 current_node_i += 1
             return False
 
-    def _route_to_nodes(self, route_segment) -> List[dict]:
+    def path_to_nodes(self, path) -> List[dict]:
         """
         Converts a route segment to a list of nodes, where each node represents a step in the route
         with its start location (latitude and longitude) and distance.
@@ -160,11 +220,17 @@ class EVRoutePlanner:
         """
         nodes = []
         # Iterate through each step in the route segment
-        for step in route_segment['legs'][0]['steps']:
+        for step in path:
+            dist = 0
+            if not (step == path[-1]):
+                # Calculate the distance between the current and next step
+                dist = geodesic(step, path[path.index(step) + 1]).meters
+                # print(dist)
+
             node = {
-                'lat': step['start_location']['lat'],
-                'lng': step['start_location']['lng'],
-                'dist': step['distance']['value']  # Distance in meters
+                'lat': step[0],
+                'lng': step[1],
+                'dist': dist
             }
             # Calculate the distance to the nearest EV charging station
             nearest_station = self.places_client.find_nearby_charging_stations((node['lat'], node['lng']))[0]#['geometry']['location']
@@ -182,4 +248,3 @@ class EVRoutePlanner:
         return nodes
     
     
-

@@ -4,7 +4,7 @@ with open("./APIKey.txt") as f:
     api_key = f.readline()
 
 def EVEmissions(client, start, fin, battery):
-    return battery
+    return 1
 
 def calculateOptimalEVRoute(client, start, end, battery):
     # Return a list of waypoints to be used in
