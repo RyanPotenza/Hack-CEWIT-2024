@@ -98,5 +98,36 @@ header h2 {
     font-size: 1.2em;
 }
 
+.spacing {
+    margin-bottom: 100px; /* Adjust the spacing as needed */
+}
+
+.methodology-header {
+    background-color: rgba(50, 50, 50, 0.8);
+    color: #fff;
+    padding: 20px;
+    width: 100%;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.methodology-box {
+    background-color: rgba(50, 50, 50, 0.8);
+    color: #fff;
+    padding: 20px;
+    width: 85%;
+    margin: 20px auto;
+    border-radius: 10px;
+}
+
+.methodology-box p {
+    font-size: 1.2em;
+}
+
+
+
+
+
+
 
 
