@@ -1,12 +1,21 @@
 // Global vars
-let map
-let directionsRenderer
-let directionsService
-let transportMethod = 'ev'
+let map;
+let directionsRenderer;
+let directionsService;
+let evList; // Declare evList outside of functions to make it accessible to other functions
 
 function initMap() {
     directionsService = new google.maps.DirectionsService();
     directionsRenderer = new google.maps.DirectionsRenderer();
+
+    getEVList(function (err, data) {
+        if (err) {
+            console.error('Failed to load EV data:', err.message);
+        } else {
+            evList = data;
+            populateEVNamesDatalist();
+        }
+    });
 
     map = new google.maps.Map(document.getElementById('googleMap'), {
         center: { lat: 40.7588, lng: -73.9851 },
@@ -15,7 +24,16 @@ function initMap() {
     directionsRenderer.setMap(map);
 
     return map;
-};
+}
+
+function populateEVNamesDatalist() {
+    const evNamesDatalist = document.getElementById('evNames');
+    evList.forEach(ev => {
+        const option = document.createElement('option');
+        option.value = ev.Name;
+        evNamesDatalist.appendChild(option);
+    });
+}
 
 function toggleTransport() {
     const transportMethod = document.getElementById('transportMode').value;
@@ -30,15 +48,16 @@ function toggleTransport() {
 
 function sendData() {
     // Get input values
-    const batteryCapacity = document.getElementById('batteryCapacity').value;
     const startLocation = document.getElementById('startLocation').value;
     const destinationLocation = document.getElementById('destinationLocation').value;
 
+    const selectedEV = evList.find(ev => ev.Name === document.getElementById('evName').value);
     // Create a JSON object with the input data
     const data = {
-        ev_battery_capacity: batteryCapacity,
-        starting_location: startLocation,
-        destination_location: destinationLocation
+        ev_battery_capacity:    selectedEV['Battery Capacity (kWh)'],
+        ev_total_range:         selectedEV["Total Range (miles)"],
+        starting_location:      startLocation,
+        destination_location:   destinationLocation
     };
 
     // Send a POST request to the backend
@@ -64,13 +83,12 @@ function displayEVRoute(data) {
         location: new google.maps.LatLng(waypoint.lat, waypoint.lng),
         stopover: true
     }));
-    console.log(formattedWaypoints)
 
     const request = {
-        origin: data.start_location,
-        destination: data.end_location, 
-        travelMode: 'DRIVING',
-        waypoints: formattedWaypoints
+        origin:         data.start_location,
+        destination:    data.end_location, 
+        travelMode:     'DRIVING',
+        waypoints:      formattedWaypoints
     };
 
     directionsService.route(request, function(response, status) {
@@ -158,3 +176,18 @@ function getTotalTransitEmissions(route){
     return totalDistance.toFixed(3)
 }
 
+function getEVList(callback) {
+    fetch('/evdata')
+        .then(response => {
+            return response.text();
+        })
+        .then(data => {
+            const jsonData = JSON.parse(data);
+            callback(null, jsonData);
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+            callback(error);
+        });
+}
+  
