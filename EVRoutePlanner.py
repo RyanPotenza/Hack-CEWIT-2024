@@ -1,111 +1,9 @@
-import googlemaps
-import pandas as pd
-
-import plotly.express as px
-import plotly.graph_objects as go
-
-import polyline
-
 from typing import List, Dict, Any, Tuple
-
 from geopy.distance import geodesic
 
-
-class PathInterpolator:
-    def __init__(self, api_key, interval_meters=10000):
-        self.gmaps = googlemaps.Client(key=api_key)
-        self.interval_meters = interval_meters
-
-    def get_points_at_intervals(self, origin, destination):
-        # # Request directions
-        directions_result = self.gmaps.directions(origin, destination)
-
-        # Extract the encoded polyline
-        # encoded_polyline = route['overview_polyline']['points']
-        encoded_polyline = directions_result[0]['overview_polyline']['points']
-
-        # Decode the polyline to get a list of latitude and longitude points
-        path = polyline.decode(encoded_polyline)
-
-        print("HERE")
-
-        
-        # print(path)
-
-        # Interpolate points along the path
-        return self._interpolate_points(path, self.interval_meters)
-
-    def _interpolate_points(self, path, interval_meters):
-        points = [path[0]]
-        remaining_distance = interval_meters
-        for i in range(1, len(path)):
-            # Calculate the distance between the current and next point
-            distance = geodesic(path[i - 1], path[i]).meters
-            while distance >= remaining_distance:
-                # Interpolate a new point along the segment
-                ratio = remaining_distance / distance
-                new_point = (
-                    path[i - 1][0] + ratio * (path[i][0] - path[i - 1][0]),
-                    path[i - 1][1] + ratio * (path[i][1] - path[i - 1][1])
-                )
-                points.append(new_point)
-                path[i - 1] = new_point
-                distance -= remaining_distance
-                remaining_distance = interval_meters
-            remaining_distance -= distance
-        return points
-
-# origin = 'New York, NY'
-# destination = 'Los Angeles, CA'
-# interval_meters = 10000  # 10 kilometers
-
-# interpolator = PathInterpolator(api_key)
-# points = interpolator.get_points_at_intervals(origin, destination, interval_meters)
-# print(points)
-
-class GooglePlacesClient:
-    def __init__(self, api_key: str):
-        """
-        Initializes the GooglePlacesClient with a given API key.
-
-        :param api_key: Google Places API key.
-        """
-        self.client = googlemaps.Client(key=api_key)
-
-    def find_nearby_charging_stations(self, location: Tuple[float, float],  radius: int = 10000) -> List[dict]:
-        """
-        Finds nearby EV charging stations within a specified radius from the current location.
-
-        :param location: A tuple containing the latitude and longitude of the current location.
-        :param radius: Search radius in meters. Default is 10,000 meters (10 km).
-        :return: A list of dictionaries containing information about each charging station found.
-        """
-        results = self.client.places_nearby(
-            location=location,
-            radius=radius,
-            type="electric_vehicle_charging_station"
-        )
-
-        if not results or 'results' not in results or len(results['results']) == 0:
-            return []
-
-        return results['results']
-class GoogleMapsClient:
-    def __init__(self, api_key: str):
-        self.client = googlemaps.Client(key=api_key)
-
-    def get_route(self, start: Tuple[float, float], end: Tuple[float, float]) -> dict:
-        """
-        Fetches route information from start to end using Google Maps API.
-
-        :param start: A tuple containing the latitude and longitude of the start point.
-        :param end: A tuple containing the latitude and longitude of the end point.
-        :return: Route information as a dictionary.
-        """
-        routes = self.client.directions(start, end, mode="driving", units="metric")
-        if not routes:
-            raise ValueError("No routes found")
-        return routes[0]
+from GoogleClients import GoogleMapsClient, GooglePlacesClient
+from PathInterpolator import PathInterpolator
+from EmissionsCalculator import EmissionsCalculator
 
 class EVRoutePlanner:
     def __init__(self, api_key: str, start: Tuple[float, float], end: Tuple[float, float], vehicle_range: int):
@@ -120,11 +18,14 @@ class EVRoutePlanner:
         self.maps_client = GoogleMapsClient(api_key)
         self.places_client = GooglePlacesClient(api_key)
         self.paths_interpolator = PathInterpolator(api_key,30000)
+        self.emissions_calculator = EmissionsCalculator()
         self.start = start
         self.end = end
         self.vehicle_range = vehicle_range
         self.route = []
         self.total_distance = 0
+
+        self.emissions_kg_co2 = 0
 
         self.charging_stations = []
 
@@ -142,7 +43,6 @@ class EVRoutePlanner:
             # try:
             # route_segment = self.maps_client.get_route(current_location, self.end)
             path = self.paths_interpolator.get_points_at_intervals(current_location, self.end)
-            print(len(path))
 
             nodes = self.path_to_nodes(path)
 
@@ -162,6 +62,11 @@ class EVRoutePlanner:
                         })
                         # self.total_distance += step['distance']['value']
 
+                    # Calculate the amount of CO2 emissions 
+                    self.emissions_kg_co2 += self.emissions_calculator.calculate_emissions(self.total_distance, node)   
+                    print("Total Distance: ", self.total_distance)
+                    print("Added emissions: ", self.emissions_kg_co2)
+
                     # Reset the distance 
                     self.total_distance = 0
 
@@ -178,6 +83,8 @@ class EVRoutePlanner:
                     self.route.append(node)
                     self.total_distance += node['dist']
                     if i == len(nodes) - 1:
+                        # Add emissions for the last segment
+                        self.emissions_kg_co2 += self.emissions_calculator.calculate_emissions(self.total_distance, node)
                         # current_location = self.end
                         keepGoing = False
             # except Exception as e:
