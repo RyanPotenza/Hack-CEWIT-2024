@@ -32,7 +32,7 @@ class EVRoute(Resource):
         destination_location    = data.get('destination_location')
 
         #calculate EV optimal route
-        ev_waypoints,ev_emissions = calculateOptimalEVRoute(client, starting_location, destination_location, ev_battery_capacity, method)
+        ev_waypoints,ev_emissions = calculateOptimalEVRoute(client, starting_location, destination_location, ev_battery_capacity, ev_total_range, method)
         print(f"Waypoints: {ev_waypoints}")
         
         # Calculate emissions

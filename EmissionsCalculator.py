@@ -21,13 +21,13 @@ co2_emissions = {
 } # kg CO2 per MWh
 
 class EmissionsCalculator:
-    def __init__(self, vehicle_type='Model 3'):
-        self.vehicle_type = vehicle_type
+    def __init__(self, vehicle_efficiency):
         # Define the energy consumption in Wh/km for different vehicle types
-        self.energy_consumption = {
-            'Model 3': 139,  # Tesla Model 3: 139 Wh/km
-            # Add other vehicle types here if needed
-        }
+        # self.energy_consumption = {
+        #     'Model 3': 139,  # Tesla Model 3: 139 Wh/km
+        #     # Add other vehicle types here if needed
+        # }
+        self.vehicle_efficiency = vehicle_efficiency
 
     def haversine(self, lat1, lon1, lat2, lon2):
         """
@@ -64,7 +64,7 @@ class EmissionsCalculator:
         power_plant_type_emissions = (power_plant_type_fraction * pd.Series(co2_emissions)).sum()  # kg CO2 per MWh
 
         # Convert energy consumption to Wh/m and calculate emissions
-        energy_consumption_wh_per_m = self.energy_consumption[self.vehicle_type] / 1000
+        energy_consumption_wh_per_m = self.vehicle_efficiency / 1000
         return power_plant_type_emissions * energy_consumption_wh_per_m * 1e-6  # kg CO2 / m
     
     def calculate_emissions(self, total_charge, loc):
