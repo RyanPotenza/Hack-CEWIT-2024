@@ -124,6 +124,15 @@ header h2 {
     font-size: 1.2em;
 }
 
+.side-by-side-image {
+    width: 40%; /* Adjust the width as needed */
+    margin-right: 5%; /* Adjust the margin between images */
+    display: inline-block;
+}
+
+.image-container {
+    margin-bottom: 20px; /* Adjust the margin between text and images */
+}
 
 
 
