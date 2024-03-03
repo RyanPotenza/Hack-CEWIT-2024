@@ -4,52 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EV Route Planner</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style-index.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
-    <div class="container">
-        <div class="ev-container">
-            <h1>EV Route Planner</h1>
+    <div class="main-container">
+        <header>
+            <h1><u>Navigating towards a Cleaner World</u></h1>
+            <h2><u>The Team</u></h2>
+            <ul class="team-members">
+                <li><a href="https://github.com/RyanPotenza" target="_blank"><img src="{{ url_for('static', filename='github-logo.png') }}" alt="GitHub Logo" width="20" height="20"> Ryan Potenza</a></li>
+                <li><a href="https://github.com/MattRaghu" target="_blank"><img src="{{ url_for('static', filename='github-logo.png') }}" alt="GitHub Logo" width="20" height="20"> Matthew Raghunundan</a></li>
+            </ul>
+        </header>
+        
+        <section class="intro">
+            <p>Discover a sustainable way to plan your routes with the EV Route Planner.</p>
+            <a href="map.html" class="btn">Go to EV Route Planner</a>
+        </section>
 
-            <form id="routeForm">
-                <label for="batteryCapacity">EV Battery Capacity:</label>
-                <input type="number" id="batteryCapacity" placeholder="Enter battery capacity">
-                
-                <label for="startLocation">Starting Location:</label>
-                <input type="text" id="startLocation" placeholder="Current Location">
-                
-                <label for="destinationLocation">Destination Location:</label>
-                <input type="text" id="destinationLocation" placeholder="Enter destination location">
+        <section class="mission-box">
+            <p>
+                In the ever-evolving landscape of transportation, our project addresses a crucial puzzle: optimizing electric vehicle route planning. As electric vehicles redefine the road ahead, our focus lies in navigating the complexities of efficient route selection, with a keen eye on environmental impact. A central aspect of our solution involves strategically choosing supercharger stations powered by cleaner energy sources, enhancing the sustainability of electric vehicle journeys. Beyond route optimization, our project meticulously tracks the carbon footprints of utilized charging stations, public transport, and gas vehicles, providing users with comprehensive insights into their environmental impact and travel time. We believe our solution is a practical step towards a future where eco-conscious choices are seamlessly integrated into our daily commutes, contributing to a cleaner and more sustainable transportation ecosystem.
+                <br><br> Using this tool requires a GCP API Key. When a key is obtained, create a file titled "APIKey.txt" in the base directory of the repository and paste the raw key on the first line.
+            </p>
+        </section>
 
-                <!-- Dropdown menu for transport mode selection -->
-                <label for="transportMode">Select Transport Mode:</label>
-                <select id="transportMode" onchange="toggleTransport()">
-                    <option value="ev">EV</option>
-                    <option value="transit">Transit</option>
-                    <option value="gas">Gas</option>
-                </select>
-
-                <button type="button" onclick="sendData()">Plan Route</button>
-            </form>
-
-            <div class="result-container">
-                <h2>Result:</h2>
-                <p id="emissions">EV Emissions: </p>
-                <p id="navigationTime">Navigation Time: </p>
-            </div>
-        </div>
-
-        <div id="googleMap" class="map-container">
-            <!-- Google Maps will be displayed here -->
-        </div>
+        <footer class="footer">
+            This project is a product of the 2024 Hack@CEWIT Hackathon run by the Center of Excellence in Wireless and Information Technology (CEWIT) at Stony Brook University.
+            <!-- Your footer content -->
+        </footer>
     </div>
-
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&loading=async&callback=initMap">
-    </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
 
 
 

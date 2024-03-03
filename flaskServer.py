@@ -47,11 +47,15 @@ api.add_resource(EVRoute, '/evroute')
 def index():
     # Get the API key from the file
     api_key = getAPIKey('APIKey.txt')
-
-    print(f"API Key used: {api_key}")
     
     # Render the HTML template and pass the API key
     return render_template('index.html', api_key=api_key)
+
+@app.route('/map.html')
+def map():
+    api_key = getAPIKey('APIKey.txt')
+
+    return render_template('map.html', api_key=api_key)
 
 if __name__ == '__main__':
     app.run(debug=True)
